@@ -1,0 +1,624 @@
+/* styles.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #F5F5F5, #E8ECEF);
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background: #1A2A44;
+    color: #D4AF37;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    color: #1A2A44;
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode h1 {
+    color: #D4AF37;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+body.dark-mode p {
+    color: #B0A990;
+}
+
+.nav-bar {
+    position: sticky;
+    top: 0;
+    background: #1A2A44;
+    padding: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+body.dark-mode .nav-bar {
+    background: #0F1A2E;
+}
+
+.nav-bar a, .nav-bar button {
+    text-decoration: none;
+    color: #D4AF37;
+    font-weight: 500;
+    font-size: 0.9em;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: none;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.nav-bar a:hover, .nav-bar a:focus, .nav-bar button:hover, .nav-bar button:focus {
+    background: #D4AF37;
+    color: #1A2A44;
+    transform: translateY(-2px);
+}
+
+.nav-bar a[href="#salaryCalculator"]::before { 
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-size: cover;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23D4AF37"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>'); 
+}
+
+body.dark-mode .nav-bar a[href="#salaryCalculator"]::before { 
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231A2A44"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>'); 
+}
+
+.nav-bar .mode-switch {
+    padding: 4px;
+    font-size: 0.9em;
+    min-width: 28px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background: none;
+}
+
+.calculator-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.calculator {
+    background: #fff;
+    padding: 25px;
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E8ECEF;
+    max-width: 400px;
+    transition: transform 0.2s, background 0.3s, border 0.3s;
+}
+
+body.dark-mode .calculator {
+    background: #2E3A59;
+    border: 1px solid #D4AF37;
+}
+
+.calculator:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    color: #1A2A44;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+body.dark-mode h2 {
+    color: #D4AF37;
+}
+
+.input-group {
+    margin: 15px 0;
+    position: relative;
+}
+
+label.mandatory {
+    font-weight: 500;
+    color: #1A2A44;
+}
+
+body.dark-mode label.mandatory {
+    color: #D4AF37;
+}
+
+label.mandatory::after {
+    content: '*';
+    color: #D4AF37;
+    margin-left: 3px;
+}
+
+label.optional {
+    color: #777;
+}
+
+body.dark-mode label.optional {
+    color: #B0A990;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    padding-left: 40px;
+    margin-top: 5px;
+    border: 1px solid #D4AF37;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    background: #F9F9F9;
+    transition: border-color 0.3s, background 0.3s;
+}
+
+body.dark-mode input, body.dark-mode select {
+    background: #3E4A6B;
+    color: #D4AF37;
+    border: 1px solid #D4AF37;
+}
+
+input:focus, select:focus {
+    border-color: #1A2A44;
+    outline: none;
+}
+
+body.dark-mode input:focus, body.dark-mode select:focus {
+    border-color: #D4AF37;
+}
+
+input:invalid, select:invalid {
+    border-color: #A93226;
+    background: #FFF5F5;
+}
+
+body.dark-mode input:invalid, body.dark-mode select:invalid {
+    border-color: #A93226;
+    background: #4A2A2A;
+}
+
+#taxRegime, #pfOption, #section80C, #section80D, #hraExemption, #npsEmployer, #otherDeductions { 
+    padding-left: 12px; 
+}
+
+#grossSalary::before { 
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    background-size: cover;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231A2A44"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>'); 
+}
+
+body.dark-mode #grossSalary::before { 
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23D4AF37"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h-2v2h-2z"/></svg>'); 
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+button.calculate {
+    background: #1A2A44;
+    color: #D4AF37;
+}
+
+body.dark-mode button.calculate {
+    background: #D4AF37;
+    color: #1A2A44;
+}
+
+button.calculate:hover {
+    background: #D4AF37;
+    color: #1A2A44;
+    transform: translateY(-2px);
+}
+
+body.dark-mode button.calculate:hover {
+    background: #B0A990;
+    color: #1A2A44;
+}
+
+button.reset {
+    background: #A93226;
+    color: #fff;
+}
+
+button.reset:hover {
+    background: #7A241B;
+    transform: translateY(-2px);
+}
+
+button.toggle {
+    background: #0066cc;
+    color: white;
+}
+
+body.dark-mode button.toggle {
+    background: #0055aa;
+}
+
+button.toggle:hover {
+    background: #003366;
+    transform: translateY(-2px);
+}
+
+body.dark-mode button.toggle:hover {
+    background: #004488;
+}
+
+button.calculate::before { 
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-size: cover;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23D4AF37"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 7h10v2H7zm0 4h10v2H7zm0 4h7v2H7z"/></svg>'); 
+}
+
+body.dark-mode button.calculate::before { 
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231A2A44"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 7h10v2H7zm0 4h10v2H7zm0 4h7v2H7z"/></svg>'); 
+}
+
+button.reset::before { 
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-size: cover;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23fff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11H7v-2h10v2z"/></svg>'); 
+}
+
+button.toggle::before { 
+    content: '';
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-size: cover;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23fff"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-0.94-0.21-1.84-0.57-2.65l-0.17-0.34 0.17 0.34c-0.36-0.81-0.57-1.71-0.57-2.65 0-4.97-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>'); 
+}
+
+body.dark-mode button.toggle::before { 
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231A2A44"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-0.94-0.21-1.84-0.57-2.65l-0.17-0.34 0.17 0.34c-0.36-0.81-0.57-1.71-0.57-2.65 0-4.97-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>'); 
+}
+
+.result {
+    margin-top: 15px;
+    font-size: 1.1em;
+    color: #333;
+    background: #F9F9F9;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #E8ECEF;
+    transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+body.dark-mode .result {
+    background: #3E4A6B;
+    color: #D4AF37;
+    border: 1px solid #D4AF37;
+}
+
+.result-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.result-table td {
+    padding: 8px;
+    border-bottom: 1px solid #E8ECEF;
+}
+
+body.dark-mode .result-table td {
+    border-bottom: 1px solid #D4AF37;
+}
+
+.result-table .label {
+    font-weight: 500;
+    color: #1A2A44;
+}
+
+body.dark-mode .result-table .label {
+    color: #D4AF37;
+}
+
+.result-table .value {
+    color: #D4AF37;
+}
+
+body.dark-mode .result-table .value {
+    color: #E6C07B;
+}
+
+.result-table .high-tax {
+    color: #A93226;
+    font-weight: bold;
+}
+
+body.dark-mode .result-table .high-tax {
+    color: #ff6347;
+}
+
+#taxProgress {
+    margin: 15px 0;
+}
+
+#taxProgress .label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #1A2A44;
+}
+
+body.dark-mode #taxProgress .label {
+    color: #D4AF37;
+}
+
+.tax-reference {
+    background: #fff;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E8ECEF;
+    max-width: 250px;
+    font-size: 0.9em;
+    color: #555;
+    transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+body.dark-mode .tax-reference {
+    background: #2E3A59;
+    color: #B0A990;
+    border: 1px solid #D4AF37;
+}
+
+.tax-reference h3 {
+    font-family: 'Playfair Display', serif;
+    color: #1A2A44;
+    font-size: 1.4em;
+    margin-bottom: 15px;
+}
+
+body.dark-mode .tax-reference h3 {
+    color: #D4AF37;
+}
+
+.tax-reference table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tax-reference th, .tax-reference td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #E8ECEF;
+}
+
+body.dark-mode .tax-reference th, body.dark-mode .tax-reference td {
+    border-bottom: 1px solid #D4AF37;
+}
+
+.label { 
+    color: #1A2A44; 
+    font-weight: 500; 
+}
+
+body.dark-mode .label { 
+    color: #D4AF37; 
+}
+
+.value { 
+    color: #D4AF37; 
+}
+
+body.dark-mode .value { 
+    color: #E6C07B; 
+}
+
+#visitorStats {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 0.9em;
+    color: #666;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #E8ECEF;
+    max-width: 600px;
+    width: 100%;
+    transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+body.dark-mode #visitorStats {
+    background: #2E3A59;
+    color: #D4AF37;
+    border: 1px solid #D4AF37;
+}
+
+#appInfo {
+    text-align: center;
+    margin: 10px 0;
+    font-size: 0.9em;
+    max-width: 600px;
+    width: 100%;
+}
+
+#version {
+    color: #1A2A44;
+    margin: 0;
+    font-weight: 500;
+}
+
+body.dark-mode #version {
+    color: #D4AF37;
+}
+
+#disclaimer {
+    color: #666;
+    margin: 5px 0 0 0;
+    font-style: italic;
+}
+
+body.dark-mode #disclaimer {
+    color: #B0A990;
+}
+
+@media (max-width: 900px) {
+    .tax-reference { 
+        display: none; 
+    }
+    .calculator-container { 
+        flex-direction: column; 
+        align-items: center; 
+    }
+    .calculator { 
+        margin: 15px auto; 
+    }
+    .nav-bar { 
+        gap: 6px; 
+        padding: 6px; 
+    }
+    .nav-bar a, .nav-bar button { 
+        font-size: 0.8em; 
+        padding: 4px 10px; 
+    }
+}
+
+@media (max-width: 600px) {
+    h1 { 
+        font-size: 2.2em; 
+    }
+    p { 
+        font-size: 1em; 
+    }
+    input, button, select { 
+        font-size: 0.9em; 
+    }
+    .nav-bar a, .nav-bar button { 
+        font-size: 0.8em; 
+        padding: 4px 8px; 
+    }
+    .calculator { 
+        padding: 15px; 
+    }
+}
+
+/* FAQ Section - New Styles Added Here */
+.faq {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid #E8ECEF;
+    transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+body.dark-mode .faq {
+    background: #2E3A59;
+    color: #D4AF37;
+    border: 1px solid #D4AF37;
+}
+
+.faq h2 {
+    font-family: 'Playfair Display', serif;
+    color: #1A2A44;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+body.dark-mode .faq h2 {
+    color: #D4AF37;
+}
+
+.faq-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #E8ECEF;
+}
+
+body.dark-mode .faq-item {
+    border-bottom: 1px solid #D4AF37;
+}
+
+.faq-item h4 {
+    font-size: 1.1em;
+    color: #1A2A44;
+    font-weight: 600;
+    margin: 0 0 5px 0;
+    padding-left: 0; /* Ensure no padding affects alignment */
+}
+
+body.dark-mode .faq-item h4 {
+    color: #D4AF37;
+}
+
+.faq-item p {
+    font-size: 1em;
+    color: #666;
+    margin: 0; /* Override global p margin */
+    padding-left: 20px; /* Indent answers consistently */
+    text-align: left; /* Override global p text-align: center */
+    line-height: 1.5;

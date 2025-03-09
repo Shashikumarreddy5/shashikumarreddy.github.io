@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salary Calculator - FY 2025-26</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Simplify Your Tax Planning</h1>
+        <p>Calculate your net salary and optimize deductions for FY 2025-26 with our free tool.</p>
+        <a href="#salaryCalculator" class="cta-button">Calculate Now</a>
+    </div>
+
+    <div class="nav-bar">
+        <a href="#salaryCalculator">Salary</a>
+        <button id="darkModeToggle" class="mode-switch"><span class="icon">☀️</span></button>
+    </div>
+
+    <div class="calculator-container">
+        <div class="tax-reference">
+            <h3>Tax Slabs (FY 2025-26)</h3>
+            <table>
+                <thead>
+                    <tr><th>Old Regime (FY 2025-26)</th><th>New Regime (FY 2025-26)</th></tr>
+                </thead>
+                <tbody id="taxReferenceTable">
+                    <tr><td colspan="2">Loading tax slabs...</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="salaryCalculator" class="calculator">
+            <h2>Calculate Net Salary</h2>
+            <div class="input-group">
+                <label for="grossSalary" class="mandatory"><i class="fas fa-rupee-sign"></i> Gross Salary (₹)</label>
+                <input type="text" id="grossSalary" placeholder="e.g., 15,00,000" oninput="restrictAndFormat(this)" required>
+            </div>
+            <div class="input-group">
+                <label for="taxRegime" class="mandatory"><i class="fas fa-book"></i> Tax Regime (FY 2025-26)</label>
+                <select id="taxRegime" onchange="toggleDeductions()" required>
+                    <option value="new">New (FY 2025-26)</option>
+                    <option value="old">Old (FY 2025-26)</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="pfOption" class="mandatory"><i class="fas fa-piggy-bank"></i> PF Contribution</label>
+                <select id="pfOption" required>
+                    <option value="fixed">₹1,800 PM (Fixed)</option>
+                    <option value="12percent">12% (Capped at ₹1.5L)</option>
+                </select>
+            </div>
+            <button id="toggleExemptions" class="toggle" onclick="toggleExemptions()">Show Exemptions</button>
+            <div id="exemptionsSection" style="display: none;">
+                <div class="input-group">
+                    <label for="section80C" class="optional"><i class="fas fa-money-check-alt"></i> Section 80C (₹)</label>
+                    <input type="text" id="section80C" placeholder="e.g., 1,50,000" oninput="restrictAndFormat(this)" disabled>
+                </div>
+                <div class="input-group">
+                    <label for="section80D" class="optional"><i class="fas fa-heartbeat"></i> Section 80D (₹)</label>
+                    <input type="text" id="section80D" placeholder="e.g., 25,000" oninput="restrictAndFormat(this)" disabled>
+                </div>
+                <div class="input-group">
+                    <label for="hraExemption" class="optional"><i class="fas fa-home"></i> HRA Exemption (₹)</label>
+                    <input type="text" id="hraExemption" placeholder="e.g., 1,00,000" oninput="restrictAndFormat(this)" disabled>
+                </div>
+                <div class="input-group">
+                    <label for="npsEmployer" class="optional"><i class="fas fa-briefcase"></i> Employer NPS (₹)</label>
+                    <input type="text" id="npsEmployer" placeholder="e.g., 50,000" oninput="restrictAndFormat(this)">
+                </div>
+                <div class="input-group">
+                    <label for="otherDeductions" class="optional"><i class="fas fa-plus-circle"></i> Other Deductions (₹)</label>
+                    <input type="text" id="otherDeductions" placeholder="e.g., 10,000" oninput="restrictAndFormat(this)">
+                </div>
+            </div>
+            <button class="calculate" onclick="calculateSalary()">Calculate Net Salary</button>
+            <button class="reset" onclick="resetSalary()">Reset</button>
+            <div id="taxProgress"></div>
+            <div id="result1" class="result"></div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <h4>Can I claim HRA in the New Tax Regime?</h4>
+            <p>No, the New Tax Regime does not allow HRA exemptions. However, you can claim Employer NPS contributions under Section 80CCD(2).</p>
+        </div>
+        <div class="faq-item">
+            <h4>How is PF calculated?</h4>
+            <p>You can choose between a fixed ₹1,800 per month contribution or 12% of your gross salary (capped at ₹1.5L annually).</p>
+        </div>
+        <div class="faq-item">
+            <h4>What is the standard deduction for FY 2025-26?</h4>
+            <p>The standard deduction is ₹75,000 for the New Regime and ₹50,000 for the Old Regime in FY 2025-26.</p>
+        </div>
+    </section>
+
+    <div id="visitorStats"></div>
+    <div id="appInfo">
+        <p id="version">Version: 1.0(March 2025)</p>
+        <p id="disclaimer">This is a simulation tool. Consult a tax professional for accurate advice.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Salary Calculator by Shashi</p>
+        <div class="footer-links">
+            <a href="https://www.incometaxindia.gov.in" target="_blank">Income Tax India</a>
+            <a href="https://www.indiabudget.gov.in" target="_blank">Budget 2025 Highlights</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
